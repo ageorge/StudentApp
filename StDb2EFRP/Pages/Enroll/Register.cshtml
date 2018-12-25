@@ -1,0 +1,49 @@
+﻿@page
+@model StDb2EFRP.Pages.Enroll.RegisterModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register for a course</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form name="f1" method="post" asp-page="RegisterModel">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Enrollment.CourseNum" class="control-label"></label>
+                <select asp-for="@Model.SelectedCourse" asp-items="@Model.CSList"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enrollment.StudentId" class="control-label"></label>
+                <select asp-for="@Model.SelectedStudent" asp-items="@Model.StudentList"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enrollment.SectionNum" class="control-label"></label>
+                <input asp-for="Enrollment.SectionNum" class="form-control" />
+                <span asp-validation-for="Enrollment.SectionNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Enrollment.Cnum" class="control-label"></label>
+                <input asp-for="Enrollment.Cnum" class="form-control" />
+                <span asp-validation-for="Enrollment.Cnum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-default" />
+            </div>
+        </form>
+        <div class="has-error">
+            @ViewData["msg"]
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
